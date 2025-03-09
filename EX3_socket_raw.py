@@ -3,13 +3,11 @@ import struct
 
 def eth_addr(a):
     return ':'.join('%02x' % b for b in a)
-
 try:
     s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(0x0003))
 except socket.error as msg:
     print('Não foi possível criar o socket. Código do erro: ' + str(msg.errno) + ' Mensagem: ' + msg.strerror)
     exit()
-
 while True:
     packet = s.recvfrom(65565)
     packet = packet[0]
